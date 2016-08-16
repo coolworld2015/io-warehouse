@@ -5,9 +5,9 @@
         .module('app')
         .controller('GoodDetailsCtrl', GoodDetailsCtrl);
 
-    GoodDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'GoodsService', '$ionicLoading'];
+    GoodDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', '$filter', 'GoodsService', '$ionicLoading'];
 
-    function GoodDetailsCtrl($rootScope, $state, $stateParams, GoodsService, $ionicLoading) {
+    function GoodDetailsCtrl($rootScope, $state, $stateParams, $filter, GoodsService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -22,6 +22,8 @@
 
         function init() {
             vm.submitShowed = false;
+            vm.price = $filter('number')(vm.price, 2);
+            vm.quantity = $filter('number')(vm.quantity, 2);
         }
 
         function showSubmit() {

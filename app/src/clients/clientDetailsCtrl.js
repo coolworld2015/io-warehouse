@@ -5,9 +5,9 @@
         .module('app')
         .controller('ClientDetailsCtrl', ClientDetailsCtrl);
 
-    ClientDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ClientsService', '$ionicLoading'];
+    ClientDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', '$filter', 'ClientsService', '$ionicLoading'];
 
-    function ClientDetailsCtrl($rootScope, $state, $stateParams, ClientsService, $ionicLoading) {
+    function ClientDetailsCtrl($rootScope, $state, $stateParams, $filter, ClientsService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -22,6 +22,7 @@
 
         function init() {
             vm.submitShowed = false;
+            vm.total = $filter('number')(vm.sum, 2);
         }
 
         function showSubmit() {

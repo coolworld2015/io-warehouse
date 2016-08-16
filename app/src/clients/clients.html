@@ -40,14 +40,16 @@
                     collection-repeat="client in (clientsCtrl.clientsFilter = (clientsCtrl.clients | filter:clientsCtrl.query))"
                     type="item-text-wrap" ng-click="clientsCtrl.clientDetails(client)">
                 <h2><strong>{{client.name}}</strong></h2>
-
-                <ion-option-button class="button-assertive" ng-click="clientsCtrl.showConfirm(client)">
-                    Delete
-                </ion-option-button>
                 <!--
-                <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
-                <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
+               <h2><strong>{{client.name}} - {{client.sum | number:2}}</strong></h2>
                 -->
+               <ion-option-button class="button-assertive" ng-click="clientsCtrl.showConfirm(client)">
+                   Delete
+               </ion-option-button>
+               <!--
+               <ion-option-button ng-click="remove(client)"><i class="ion-edit"></i></ion-option-button>
+               <ion-option-button ng-click="remove(client)"><i class="ion-close-circled"></i></ion-option-button>
+               -->
             </ion-item>
         </ion-list>
     </ion-content>
