@@ -1,0 +1,90 @@
+<ion-view view-title="New item">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="clientAddCtrl.showSubmit()">
+        </button>
+    </ion-nav-buttons>
+
+
+    <ion-content class="padding">
+
+        <h2 align="center">New item</h2>
+
+        <form ng-submit="clientAddCtrl.clientSubmit()" novalidate name="clientAddCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text"
+                           ng-model="clientAddCtrl.name"
+                           placeholder="Name"
+                           name="name"
+                           ng-change="clientAddCtrl.change()" required>
+                </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <input type="text"
+                           ng-model="clientAddCtrl.phone"
+                           placeholder="Phone"
+                           name="phone"
+                           ng-change="clientAddCtrl.change()" required>
+                </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.phone.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.address"
+                              placeholder="Address"
+                              name="address"
+                              ng-change="clientAddCtrl.change()" required>
+                    </textarea>
+                </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.address.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.cv"
+                              placeholder="Details"
+                              name="cv"
+                              ng-change="clientAddCtrl.change()" required>
+                    </textarea>
+                </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.cv.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <textarea rows="2"
+                              ng-model="clientAddCtrl.description"
+                              placeholder="Description"
+                              name="description"
+                              ng-change="clientAddCtrl.change()" required>
+                    </textarea>
+                </label>
+
+                <div ng-if="clientAddCtrl.form.$submitted">
+                    <div ng-show="clientAddCtrl.form.description.$error.required" class="valid">Value required</div>
+                </div>
+            </div>
+
+            <div ng-show="clientAddCtrl.error" class="valid fix">
+                Error. Wrong name or password
+            </div>
+            <button type="submit" class="button button-block button-positive"
+                    style="background-color: #417D9A !important;">
+                <strong>Submit</strong>
+            </button>
+        </form>
+    </ion-content>
+
+</ion-view>

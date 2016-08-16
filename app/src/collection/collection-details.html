@@ -1,0 +1,51 @@
+<ion-view view-title="{{collectionDetailsCtrl.name}}">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false;">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+
+        <h2 align="center">{{collectionDetailsCtrl.name}}</h2>
+
+        <div class="list">
+			<label class="item  ">
+				<img ng-src="{{collectionDetailsCtrl.pic}}" style="width:100%">
+			</label>
+		
+            <label class="item item-input">
+                <span class="input-label"><b>Name:</b></span>
+                <input type="text"
+                       ng-model="collectionDetailsCtrl.name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>ID:</b></span>
+                <input type="text"
+                       ng-model="collectionDetailsCtrl.id">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Group:</b></span>
+                <input type="text"
+                       ng-model="collectionDetailsCtrl.group">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Category:</b></span>
+                <input type="text"
+                       ng-model="collectionDetailsCtrl.category">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label"><b>Description:</b></span>
+                <textarea rows="5" style="width: 62%"
+                          ng-model="collectionDetailsCtrl.description">
+                </textarea>
+            </label>
+        </div>
+        <br>
+
+    </ion-content>
+</ion-view>
