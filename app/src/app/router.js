@@ -27,7 +27,6 @@
                 }
             })
 
-
             .state('root.clients', {
                 url: '/clients',
                 data: {

@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('GoodDetailsCtrl', GoodDetailsCtrl);
+        .controller('GoodAddCtrl', GoodAddCtrl);
 
-    GoodDetailsCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'GoodsService', '$ionicLoading'];
+    GoodAddCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'GoodsService', '$ionicLoading'];
 
-    function GoodDetailsCtrl($rootScope, $state, $stateParams, GoodsService, $ionicLoading) {
+    function GoodAddCtrl($rootScope, $state, $stateParams, GoodsService, $ionicLoading) {
         var vm = this;
 
         angular.extend(vm, {
@@ -29,20 +29,25 @@
         }
 
         function goodSubmit() {
+            if (vm.form.$invalid) {
+                return;
+            }
+
             $ionicLoading.show({
                 template: '<ion-spinner></ion-spinner>'
             });
 
+            var id = (Math.random() * 1000000).toFixed();
             var item = {
-                id: vm.id,
+                id: id,
                 name: vm.name,
                 price: vm.price,
-                quantity: vm.quantity,
-                store: vm.store,
+                quantity: 0,
+                store: false,
                 description: vm.description
             };
 
-            GoodsService.editItem(item)
+            GoodsService.addItem(item)
                 .then(function () {
                     $ionicLoading.hide();
                     $state.go('root.goods', {}, {reload: true});

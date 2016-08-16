@@ -4,19 +4,64 @@
         .module('app')
         .factory('GoodsService', GoodsService);
 
-    GoodsService.$inject = ['$http'];
+    GoodsService.$inject = ['$rootScope', '$http'];
 
-    function GoodsService($http) {
+    function GoodsService($rootScope, $http) {
+        var webUrl = $rootScope.myConfig.webUrl;
+
         return {
-            getAll: getAll
+            getGoods: getGoods,
+            addItem: addItem,
+            editItem: editItem,
+            deleteItem: deleteItem,
+            _sort: sort
         };
 
-        function getAll() {
-            var url = 'http://ui-warehouse.herokuapp.com/api/goods/get';
+        function getGoods() {
+            var url = webUrl + 'api/goods/get';
             return $http.get(url)
+                .then(function (result) {
+                    result.data.sort(sort);
+                    return result;
+                });
+        }
+
+        function addItem(item) {
+            var url = webUrl + 'api/goods/add';
+            return $http.post(url, item)
                 .then(function (result) {
                     return result;
                 });
+        }
+
+        function editItem(item) {
+            var url = webUrl + 'api/goods/update';
+            return $http.post(url, item)
+                .then(function (result) {
+                    return result;
+                });
+        }
+
+        function deleteItem(id) {
+            var url = webUrl + 'api/goods/delete';
+            var item = {
+                "id": id
+            };
+            return $http.post(url, item)
+                .then(function (result) {
+                    return result;
+                });
+        }
+
+        function sort(a, b) {
+            var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
         }
     }
 })();

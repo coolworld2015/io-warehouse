@@ -1,12 +1,42 @@
-<ion-view view-title="Goods">
-    <ion-content>
+<ion-view view-title="Goods ({{goodsCtrl.goodsFilter.length}} / {{goodsCtrl.goods.length}})"
+          ng-click="goodsCtrl.queryClear()">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="goodsCtrl.showAdd()">
+        </button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search"
+                   ng-model="goodsCtrl.query.name"
+                   ng-change="goodsCtrl.queryChanged()"
+                   placeholder="Search">
+            <i class="ion-close-round" ng-show="goodsCtrl.clear"></i>
+        </label>
+    </div>
+
+    <ion-content class="has-subheader">
+        <ion-refresher on-refresh="goodsCtrl.doRefresh()"></ion-refresher>
+
         <ion-list>
-            <ion-item ng-repeat="good in goodsCtrl.goods" type="item-text-wrap" ng-click="goodsCtrl.goodDetails(good)">
-                <h2>{{good.name}}</h2>
-                <ion-option-button class="button-assertive" ng-click="remove(good)">
+            <ion-item
+                    collection-repeat="good in (goodsCtrl.goodsFilter = (goodsCtrl.goods | filter:goodsCtrl.query))"
+                    type="item-text-wrap" ng-click="goodsCtrl.goodDetails(good)">
+                <h2><strong>{{good.name}}</strong></h2>
+
+                <ion-option-button class="button-assertive" ng-click="goodsCtrl.showConfirm(good)">
                     Delete
                 </ion-option-button>
+
             </ion-item>
         </ion-list>
     </ion-content>
+
+    <div ng-if="goodsCtrl.addShowed" class="badge-div" ng-click="goodsCtrl.goodAdd()">
+        <span class="badge-icon ion-plus"></span>
+    </div>
+
 </ion-view>

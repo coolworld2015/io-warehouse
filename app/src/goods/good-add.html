@@ -1,0 +1,63 @@
+<ion-view view-title="New item">
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon ion-navicon"
+                ng-click="goodAddCtrl.showSubmit()">
+        </button>
+    </ion-nav-buttons>
+
+
+    <ion-content class="padding">
+
+        <h2 align="center">New item</h2>
+
+        <form ng-submit="goodAddCtrl.goodSubmit()" novalidate name="goodAddCtrl.form" autocomplete="off">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text"
+                           ng-model="goodAddCtrl.name"
+                           placeholder="Name"
+                           name="name"
+                           ng-change="goodAddCtrl.change()" required>
+                </label>
+
+                <div ng-if="goodAddCtrl.form.$submitted">
+                    <div ng-show="goodAddCtrl.form.name.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <input type="text"
+                           ng-model="goodAddCtrl.price"
+                           placeholder="Price"
+                           name="price"
+                           ng-change="goodAddCtrl.change()" required>
+                </label>
+
+                <div ng-if="goodAddCtrl.form.$submitted">
+                    <div ng-show="goodAddCtrl.form.price.$error.required" class="valid">Value required</div>
+                </div>
+
+                <label class="item item-input">
+                    <input type="text"
+                           ng-model="goodAddCtrl.description"
+                           placeholder="Description"
+                           name="description"
+                           ng-change="goodAddCtrl.change()" required>
+                </label>
+
+                <div ng-if="goodAddCtrl.form.$submitted">
+                    <div ng-show="goodAddCtrl.form.description.$error.required" class="valid">Value required</div>
+                </div>
+            </div>
+
+            <div ng-show="goodAddCtrl.error" class="valid fix">
+                Error. Wrong name or password
+            </div>
+            <button type="submit" class="button button-block button-positive"
+                    style="background-color: #417D9A !important;">
+                <strong>Submit</strong>
+            </button>
+        </form>
+    </ion-content>
+
+</ion-view>
